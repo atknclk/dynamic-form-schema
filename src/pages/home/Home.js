@@ -3,11 +3,13 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import { createYupSchema } from '../../utils/yupSchemaCreator';
 import DynamicInput from '../../components/DynamicInput';
+import PreviewModal from '../../components/PreviewModal';
 import { useDynamicFormData } from '../../store/context';
 import Button from '@material-ui/core/Button';
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 
 const Home = () => {
-  const { initialValues, formData } = useDynamicFormData();
+  const { setIsPreviewMode, initialValues, formData } = useDynamicFormData();
 
   const handleSubmission = (val) => {
     alert(JSON.stringify(val, null, 4));
@@ -33,9 +35,22 @@ const Home = () => {
                   Submit
                 </Button>
               </form>
+              <PreviewModal formData={formData} initialValues={formikProps.values} />
             </>
           )}
         </Formik>
+
+        <Button
+          onClick={() => {
+            setIsPreviewMode(true);
+          }}
+          variant='contained'
+          color='primary'
+          component='span'
+          className='preview-btn'
+          startIcon={<RemoveRedEyeIcon />}>
+          Preview Mode
+        </Button>
       </div>
     </Fragment>
   );

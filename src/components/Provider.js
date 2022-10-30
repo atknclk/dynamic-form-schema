@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { MainContext } from '../store/context';
 import { formData } from '../constants/formData';
 
@@ -15,9 +16,12 @@ const getInitialValuesFormData = (formData) => {
 };
 
 const Provider = ({ children }) => {
+  const [isPreviewMode, setIsPreviewMode] = useState(false);
   const initialValues = getInitialValuesFormData(formData);
 
   const data = {
+    isPreviewMode,
+    setIsPreviewMode,
     initialValues,
     formData,
   };
