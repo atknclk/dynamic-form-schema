@@ -1,3 +1,7 @@
+$page-bg-color: #ffffff;
+$gray-background: #cccbc482;
+$gray300: #b9bbbc;
+$vivid-red: #e12a2a;
 $breakpoint-tablet: 768px;
 
 @mixin hide {
@@ -6,4 +10,12 @@ $breakpoint-tablet: 768px;
 
 @mixin fullWidth {
   width: 100%;
+}
+
+@mixin positionAbsolute {
+  position: absolute;
+}
+
+@mixin displayFlex {
+  display: flex;
 }
