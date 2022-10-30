@@ -7,12 +7,15 @@ import PreviewModal from '../../components/PreviewModal';
 import { useDynamicFormData } from '../../store/context';
 import Button from '@material-ui/core/Button';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import { setFormData } from '../../service/api';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Home = () => {
   const { setIsPreviewMode, initialValues, formData } = useDynamicFormData();
 
   const handleSubmission = (val) => {
-    alert(JSON.stringify(val, null, 4));
+    setFormData(JSON.stringify(val, null, 4));
   };
 
   const yupSchema = formData.reduce(createYupSchema, {});
@@ -52,6 +55,7 @@ const Home = () => {
           Preview Mode
         </Button>
       </div>
+      <ToastContainer />
     </Fragment>
   );
 };
