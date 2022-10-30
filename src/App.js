@@ -1,8 +1,14 @@
 import React from 'react';
 import './assets/styles/style.scss';
+import Home from './pages/home/Home';
+import Provider from './components/Provider';
 
 function App() {
-  return <div className='App'>Hello World</div>;
+  return (
+    <Provider className='App'>
+      <Home />
+    </Provider>
+  );
 }
 
 export default App;
