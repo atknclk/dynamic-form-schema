@@ -15,6 +15,31 @@ body {
     height: 100vh;
   }
 
+  .modal-container {
+    @include positionAbsolute;
+    @include displayFlex;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    flex-direction: column;
+    width: 90%;
+    max-width: 765px;
+    max-height: 80%;
+    border: '2px solid #000';
+    border-radius: 10px;
+    padding: 30px;
+    margin: auto;
+    background-color: $page-bg-color;
+
+    .close-btn {
+      @include positionAbsolute;
+      top: 8px;
+      right: 8px;
+      color: $gray-background;
+    }
+  }
+
   .form-schema {
     @include displayFlex;
     flex-direction: row;
@@ -78,6 +103,10 @@ body {
         }
       }
     }
+  }
+
+  .preview-btn {
+    margin-top: 10px;
   }
 }
 
