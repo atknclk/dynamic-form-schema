@@ -1,70 +1,110 @@
-# Getting Started with Create React App
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/ridoansaleh/dynamic-form-json/blob/master/LICENSE)
+[![dynamic-form-schema version](https://img.shields.io/badge/dynamic--form--schema-v1.0.0-green)](https://www.npmjs.com/package/dynamic-form-json)
+[![npm version](https://img.shields.io/badge/npm-v8.19.2-green)](https://www.npmjs.com/package/dynamic-form-json)
+[![yarn version](https://img.shields.io/badge/yarn-v1.22.19-green)](https://www.npmjs.com/package/dynamic-form-json)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Dynamic Form Schema
 
-## Available Scripts
+`dynamic-form-schema` is a tiny project to generate a Form in React automatically based on certain array of object that passed as a props. This project use regular scss created from scratch, so user can customize it in the future. On top of it, i use [Formik](https://github.com/jaredpalmer/formik) and [Yup](https://github.com/jquense/yup) for form's skeleton and validations. When the form is submitted, a json file is created on the node js backend and the data of the inputs are added to it.
 
-In the project directory, you can run:
 
-### `npm start`
+## Used technologies
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+**Client:** React
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**Server:** Node, Express
 
-### `npm test`
+  
+## Run it on your computer
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Clone the project
 
-### `npm run build`
+```bash
+  git clone https://github.com/atknclk/dynamic-form-schema.git
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Go to the project directory
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+  cd dynamic-form-schema
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Install required packages
 
-### `npm run eject`
+```bash
+  yarn install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Run the server
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+  yarn start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Open a new terminal for backend,
+go to the service directory
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+  cd api
+```
 
-## Learn More
+Run the server
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+  yarn install
+  yarn start
+```
+## Peer Dependencies
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Remember you also need to install the peer dependencies of this package. They are `formik`, `yup`, `material-ui`, `fs`, `sass` and `react-toastify`.
 
-### Code Splitting
+  
+## API Usage
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#### Create Json File
 
-### Analyzing the Bundle Size
+```bash
+  POST http://localhost:9000/setFormData
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+| Parameter | Type     | Explanation                |
+| :-------- | :------- | :------------------------- |
+| `data` | `string` | **Necessary**. JSON Data. |
 
-### Making a Progressive Web App
+  
+## Features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Create dynamic form
+- Preview mode
 
-### Advanced Configuration
+  
+## Supported Fields
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Currently this library supports form input types such as:
 
-### Deployment
+- [x] Text
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- [x] Number
 
-### `npm run build` fails to minify
+- [x] Select
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [x] Radio
+
+- [x] Date
+
+- [x] Checkbox
+
+- [x] Upload
+
+### Fields
+
+These are the properties you can pass to an Object in formData array to create TextField component. Not all of them are required. The properties required are id, and type.
+
+| Name           | Description                                                                                                                                                                          | PropType                                              | Required | Default Props                                                                       |
+| :------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------- | :------- | :---------------------------------------------------------------------------------- |
+| id             | This id will be put as the name of the field / input element                                                                                                                         | string                                                | true     | `""` / empty string                                                                 |
+| label          | The label of the field                                                                                                                                                               | string                                                | false    | Id (uppercase the first letter of id props). Example: `id="text" => label="Text"` |
+| type           | The type of the field                                                                                                                                                                | string <= enum["text", "password", "number", "email"] | true     | `""`                                                                                |
+| value          | The default value of the field                                                                                                                                                       | string                                                | false    | `""`                                                                                |
+| validationType | The validation type of the field. This is related to the type of data you'll enter in your field. If the data you will input to the field is number, you should make this as number. | string                                                | false    | `"string"`                                                                          |
+| validations    | Validation rule for this field. This is similar to yup API because we used yup under the hood.                                                                                       | array                                                 | false    | `"[]"`                                                                              |
