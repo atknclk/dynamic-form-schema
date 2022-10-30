@@ -1,0 +1,9 @@
+$breakpoint-tablet: 768px;
+
+@mixin hide {
+  display: none;
+}
+
+@mixin fullWidth {
+  width: 100%;
+}
